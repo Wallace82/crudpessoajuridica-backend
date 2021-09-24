@@ -1,4 +1,4 @@
-package com.desafio.crudpj.domain;
+package com.desafio.crudpj.domain.model;
 
 public enum TipoEmpresaEnum {
 

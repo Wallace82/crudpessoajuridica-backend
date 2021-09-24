@@ -1,4 +1,4 @@
-package com.desafio.crudpj.domain;
+package com.desafio.crudpj.domain.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
