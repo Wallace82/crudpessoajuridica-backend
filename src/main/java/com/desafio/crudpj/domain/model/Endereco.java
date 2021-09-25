@@ -3,14 +3,9 @@ package com.desafio.crudpj.domain.model;
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
-import com.sun.istack.NotNull;
+import lombok.Data;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-
+@Data
 public class Endereco {
 	
 	

@@ -3,7 +3,7 @@ package com.desafio.crudpj.domain.model;
 public enum TipoEmpresaEnum {
 
 	MATRIZ(1,"Matriz"),
-	FILIAL(4,"Filial");
+	FILIAL(2,"Filial");
 	
 	private long id;
 	private String descricao;

@@ -7,8 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
-import com.desafio.crudpj.core.annotation.Cnpj;
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import com.sun.istack.NotNull;
 
 import lombok.EqualsAndHashCode;
@@ -30,12 +32,12 @@ public class PessoaJuridica {
 	@Column(name="PEJ_CODIGO",unique=true, nullable=false)
 	private Long id;
 	
-	@Cnpj
-	@NotNull
+	@CNPJ
+	@NotEmpty
 	@Column(name="PEJ_CNPJ",nullable = false,length = 15)
 	private String cnpj;
 	
-	@NotNull
+	@NotEmpty(message = "Nome é obrigatório")
 	@Column(name="PEJ_NOME",nullable = false,length = 50)
 	private String nome;
 	
