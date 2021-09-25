@@ -4,10 +4,10 @@ import com.desafio.crudpj.domain.model.Endereco;
 import com.desafio.crudpj.domain.model.TipoEmpresaEnum;
 
 import lombok.Data;
-
+import lombok.ToString;
+@ToString
 @Data
 public class PessoaJuridicaDTO {
-
 	private Long id;
 	private String cnpj;
 	private String nome;
@@ -16,5 +16,5 @@ public class PessoaJuridicaDTO {
 	private String email;
 	private TipoEmpresaEnum tipoEmpresa;
 	private Endereco endereco;
-	
+	private Long matrixId;
 }

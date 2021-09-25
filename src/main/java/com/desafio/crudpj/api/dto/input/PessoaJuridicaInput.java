@@ -9,8 +9,10 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import com.desafio.crudpj.domain.model.TipoEmpresaEnum;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class PessoaJuridicaInput {
 
 
@@ -56,5 +58,9 @@ public class PessoaJuridicaInput {
 
 	@NotBlank(message = "Estado é Obrigatório")
 	private String  enderecoUf;
+	
+	private Long  matrixId;
+	
+	
 
 }

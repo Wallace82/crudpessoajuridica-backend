@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +32,7 @@ import com.desafio.crudpj.core.mapper.MapperPessoaJuridica;
 import com.desafio.crudpj.domain.exception.PessoaJuridicaNaoEncontradoException;
 import com.desafio.crudpj.domain.filter.PessoaJuridicaFilter;
 import com.desafio.crudpj.domain.model.PessoaJuridica;
+import com.desafio.crudpj.domain.model.TipoEmpresaEnum;
 import com.desafio.crudpj.domain.service.PessoaJuridicaService;
 
 import io.swagger.annotations.ApiOperation;
@@ -85,10 +87,29 @@ public class PessoaJuridicaController {
 	public ResponseEntity<?>  cadastro(@RequestBody @Valid PessoaJuridicaInput pessoaJuridicaInput) throws IOException {
 		PessoaJuridicaDTO pessoaJuridicaDTO = mapperPessoaJuridica.mapperPessoaJuridicaInput(pessoaJuridicaInput);
 		pessoaJuridicaDTO.setId(0l);
-		PessoaJuridica pessoaJuridica = pessoaJuridicaService.cadastrar(mapperPessoaJuridica.mapperPostDto(pessoaJuridicaDTO));
-		return  buscar(pessoaJuridica.getId());
-		
-	}
+		System.err.println(pessoaJuridicaInput.toString());
+			try {
+				PessoaJuridica pessoaJuridica =  new PessoaJuridica();
+				if(pessoaJuridicaInput.getTipoEmpresa().equals(TipoEmpresaEnum.FILIAL) && 
+						(pessoaJuridicaInput.getMatrixId() != null  || !pessoaJuridicaInput.getMatrixId().equals(0l) ) ) {
+					System.err.println("MATRIX É OBRIGATÓRIO");
+					PessoaJuridica matriz=  pessoaJuridicaService.buscar(pessoaJuridicaInput.getMatrixId());
+					pessoaJuridica=  mapperPessoaJuridica.mapperPostDto(pessoaJuridicaDTO);
+					pessoaJuridica.setMatrix(matriz);
+					pessoaJuridica = 
+							pessoaJuridicaService.cadastrar(pessoaJuridica);
+				}
+				else {
+					 pessoaJuridica = pessoaJuridicaService.cadastrar(mapperPessoaJuridica.mapperPostDto(pessoaJuridicaDTO));
+				}
+				return  buscar(pessoaJuridica.getId());
+				
+				} catch (PessoaJuridicaNaoEncontradoException msg) {
+					ResponseEntity.notFound().build();
+					return new ResponseEntity<>(msg.getMessage(), HttpStatus.NOT_FOUND);
+				}
+				
+			}
 	
 	@DeleteMapping()
 	public ResponseEntity<?>  excluir(Long id) throws IOException {

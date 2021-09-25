@@ -1,16 +1,23 @@
 package com.desafio.crudpj.domain.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import lombok.EqualsAndHashCode;
@@ -60,6 +67,14 @@ public class PessoaJuridica {
 	
 	@Embedded
 	private Endereco endereco;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PEJ_CODIGO_MATRIX",referencedColumnName = "PEJ_CODIGO")
+	private PessoaJuridica matrix;
+
+	@JsonIgnore
+	@OneToMany( mappedBy = "matrix", fetch = FetchType.LAZY)
+	private List<PessoaJuridica> pessoasJuridicasFiliais;
 	
 
 }
