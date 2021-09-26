@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3dc2319c-3fa2-4307-bd79-a79d1984095c",
+		"_postman_id": "f6e7908d-8506-446c-8656-84f03682bddc",
 		"name": "Crud Empresa",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -318,6 +318,46 @@
 					"path": [
 						"cadastro",
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13 - Buscar CEP  - API Via Cep",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/buscarcep/13502416",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buscarcep",
+						"13502416"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "14 - Listagem de empresas do tipo MATRIZ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/matrizes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"matrizes"
 					]
 				}
 			},

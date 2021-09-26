@@ -9,7 +9,7 @@ public class PessoaJuridicaMatrizException extends EntidadeNaoEncontradaExceptio
 	}
 	
 	public PessoaJuridicaMatrizException() {
-		this(String.format("Empresa matriz não pode ser excluida"));
+		this(String.format("Empresa matriz não pode ser excluida por ter filiais vinculadas"));
 	}
 	
 }

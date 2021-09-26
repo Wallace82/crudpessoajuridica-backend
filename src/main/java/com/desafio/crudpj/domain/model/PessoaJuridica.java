@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -42,7 +45,7 @@ public class PessoaJuridica {
 	
 	@CNPJ
 	@NotEmpty
-	@Column(name="PEJ_CNPJ",nullable = false,length = 15)
+	@Column(name="PEJ_CNPJ",unique=true,nullable = false,length = 15)
 	private String cnpj;
 	
 	@NotEmpty(message = "Nome é obrigatório")
@@ -91,6 +94,18 @@ public class PessoaJuridica {
 		this.matriz = matriz;
 		
 	}
-
+//15.340.235/0001-08
+	
+	@PrePersist @PreUpdate
+	private void prePersistPreUpdate() {
+		if(this.cnpj!=null){
+			this.cnpj = this.cnpj.trim().replaceAll("\\.|-|/", "");			
+		}
+	}
+	
+	@PostLoad
+	private void postLoad() {
+		this.cnpj = (this.cnpj!=null?this.cnpj.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})", "$1.$2.$3/$4-").trim():null); 
+	}
 
 }

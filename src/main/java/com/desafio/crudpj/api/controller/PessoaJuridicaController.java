@@ -2,6 +2,7 @@ package com.desafio.crudpj.api.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,7 +57,6 @@ public class PessoaJuridicaController {
 	public ResponseEntity<?>  buscar(@PathVariable Long id) {
 		try {
 			PessoaJuridicaDTO pessoaJuridica =  pessoaJuridicaService.buscar(id);
-
 			return ResponseEntity.ok(pessoaJuridica);
 		} catch (PessoaJuridicaNaoEncontradoException msg) {
 			ResponseEntity.notFound().build();
@@ -82,6 +83,13 @@ public class PessoaJuridicaController {
 					required = false,
 					defaultValue = "5") int size)  {
 		return pessoaJuridicaService.filtrar(pessoaJuridicaFilter,page,size);
+	}
+	
+	
+	@ApiOperation(value = "BUSCAR AS EMPRESAS MATRIZES:")
+	@GetMapping("/matrizes")
+	public List<PessoaJuridicaDTO> getAllMatrizes(){
+		return pessoaJuridicaService.buscarMatriz();
 	}
 
 
@@ -191,6 +199,8 @@ public class PessoaJuridicaController {
 		return errors;
 	}
 	
+	
+	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(PessoaJuridicaMatrizObrigatoriaException.class)
 	public Map<String, String> handlePessoaJuridicaMatrizObrigatoriaException(PessoaJuridicaMatrizObrigatoriaException ex) {
@@ -215,6 +225,13 @@ public class PessoaJuridicaController {
 		return errors;
 	}
 	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public  Map<String, String> handleJsonErrors(HttpMessageNotReadableException ex) {
+		Map<String, String> errors = new HashMap<>();
+		errors.put("MENSAGEM", ex.getMessage());
+		return errors;
+	}
 	
 
 }
