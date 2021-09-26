@@ -2,23 +2,39 @@ package com.desafio.crudpj.domain.model;
 
 public enum TipoEmpresaEnum {
 
-	MATRIZ(1,"Matriz"),
-	FILIAL(2,"Filial");
+	MATRIZ(0,"Matriz"),
+	FILIAL(1,"Filial");
 	
-	private long id;
+	private Integer id;
 	private String descricao;
 	
-	private TipoEmpresaEnum(long id, String descricao) {
+	
+	private TipoEmpresaEnum(Integer id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
 	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 
 	public String getDescricao() {
 		return descricao;
 	}
 
-	public long getId() {
-		return id;
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
+	
+	
+	
 	
 }

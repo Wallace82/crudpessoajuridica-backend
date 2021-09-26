@@ -3,9 +3,13 @@ package com.desafio.crudpj.domain.model;
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Endereco {
 	
 	
@@ -36,7 +40,6 @@ public class Endereco {
 	   @NotBlank(message = "Campo Estado é Obrigatório")
 	   @Column(name="PEJ_ENDERECO_UF",nullable = false,length = 40)
 	   private String  uf;
-	   
 	  
 	   
 	
