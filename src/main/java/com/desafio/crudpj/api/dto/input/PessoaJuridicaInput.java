@@ -37,7 +37,7 @@ public class PessoaJuridicaInput {
 	private String razaoSocial;
 
 	@NotBlank(message = "Contato é obrigatório")
-	@Size(max = 10,message = "Razao Contato ser menor que ou igual à 10")
+	@Size(max = 11,message = "Razao Contato ser menor que ou igual à 11")
 	private String contato;
 
 	@NotBlank(message = "E-mail é obrigatório")

@@ -34,18 +34,18 @@ public class PessoaJuridicaService {
 	}
 
 	public PessoaJuridica cadastrar(PessoaJuridica pessoaJuridica) {
-		
 		Optional<PessoaJuridica> pessoaJuridicaExistente = pessoaJuridicaRepository.findByCnpj(pessoaJuridica.getCnpj());
 		if (pessoaJuridicaExistente.isPresent()
-				&& !pessoaJuridicaExistente.get().equals(pessoaJuridica)) {
+				&& !pessoaJuridicaExistente.get().getId().equals(pessoaJuridica.getId())) {
 			throw new NegocioException(
 					String.format("Já existe uma empresa cadastrado com o CNPJ %s", pessoaJuridica.getCnpj()));
 		}
 		return pessoaJuridicaRepository.save(pessoaJuridica);
 	}
+	
+	
 
 	public PessoaJuridicaDTO buscarOuFalhar(Long id) {
-
 		Optional<PessoaJuridicaDTO> retorno = pessoaJuridicaRepository.buscarPorId(id);
 		if(!retorno.isPresent()) {
 			new PessoaJuridicaNaoEncontradoException(id);

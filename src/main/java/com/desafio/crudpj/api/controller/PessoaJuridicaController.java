@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desafio.crudpj.api.dto.PessoaJuridicaDTO;
 import com.desafio.crudpj.api.dto.input.PessoaJuridicaInput;
 import com.desafio.crudpj.core.mapper.MapperPessoaJuridica;
+import com.desafio.crudpj.domain.exception.NegocioException;
 import com.desafio.crudpj.domain.exception.PessoaJuridicaMatrizException;
 import com.desafio.crudpj.domain.exception.PessoaJuridicaMatrizObrigatoriaException;
 import com.desafio.crudpj.domain.exception.PessoaJuridicaNaoEncontradoException;
@@ -101,7 +102,7 @@ public class PessoaJuridicaController {
 			
 			return  buscar(pessoaJuridica.getId());
 		
-		} catch (com.desafio.crudpj.domain.exception.NegocioException msg) {
+		} catch (NegocioException msg) {
 			return new ResponseEntity<>(msg.getMessage(), HttpStatus.CONFLICT);
 		
 		} 
@@ -131,8 +132,8 @@ public class PessoaJuridicaController {
 	}
 
 	@ApiOperation(value ="EXCLUIR A EMPRESA")
-	@DeleteMapping()
-	public ResponseEntity<?>  excluir(Long id) throws IOException {
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?>  excluir(@PathVariable Long id) throws IOException {
 
 		try {
 			PessoaJuridica pessoaJuridica =  pessoaJuridicaService.buscarEntity(id);
@@ -168,18 +169,15 @@ public class PessoaJuridicaController {
 		
 		if(pessoaJuridicaDTO.getTipoEmpresa().equals(TipoEmpresaEnum.FILIAL)) {
 				
-				if (pessoaJuridicaDTO.getMatrizId()==null || pessoaJuridicaDTO.getMatrizId().equals(0l) ) {
-					throw new PessoaJuridicaMatrizObrigatoriaException();
-				}
-				else {
-					PessoaJuridica matriz=  pessoaJuridicaService.buscarEntity(pessoaJuridicaInput.getMatrizId());
-					pessoaJuridica.setMatriz(matriz);
-				}
+			if (pessoaJuridicaDTO.getMatrizId()==null || pessoaJuridicaDTO.getMatrizId().equals(0l) ) {
+				throw new PessoaJuridicaMatrizObrigatoriaException();
+			}
+			else {
+				PessoaJuridica matriz=  pessoaJuridicaService.buscarEntity(pessoaJuridicaInput.getMatrizId());
+				pessoaJuridica.setMatriz(matriz);
+			}
 		}
-		
 	}
-
-	
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -197,7 +195,7 @@ public class PessoaJuridicaController {
 	@ExceptionHandler(PessoaJuridicaMatrizObrigatoriaException.class)
 	public Map<String, String> handlePessoaJuridicaMatrizObrigatoriaException(PessoaJuridicaMatrizObrigatoriaException ex) {
 		Map<String, String> errors = new HashMap<>();
-		errors.put("matrizId", ex.getMessage());
+		errors.put("MENSAGEM", ex.getMessage());
 		return errors;
 	}
 	
@@ -205,8 +203,18 @@ public class PessoaJuridicaController {
 	@ExceptionHandler(PessoaJuridicaMatrizException.class)
 	public Map<String, String> handlePessoaJuridicaMatrizException(PessoaJuridicaMatrizException ex) {
 		Map<String, String> errors = new HashMap<>();
-		errors.put("MESSAGEM", ex.getMessage());
+		errors.put("MENSAGEM", ex.getMessage());
 		return errors;
 	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(PessoaJuridicaNaoEncontradoException.class)
+	public Map<String, String> handlePessoaJuridicaNaoEncontradoException(PessoaJuridicaNaoEncontradoException ex) {
+		Map<String, String> errors = new HashMap<>();
+		errors.put("MENSAGEM", ex.getMessage());
+		return errors;
+	}
+	
+	
 
 }
