@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "f6e7908d-8506-446c-8656-84f03682bddc",
+		"name": "Crud Empresa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 - Cadastro de Empresa MATRIZ - sem erro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cnpj\": \"25061391000185\",\r\n  \"contato\": \"1199997514\",\r\n  \"email\": \"desenvolvimento@giovannuslimpezaltda.com\",\r\n  \"enderecoBairro\": \"Jardim Guanabara\",\r\n  \"enderecoCep\": \"13502416\",\r\n  \"enderecoComplemento\": \"string\",\r\n  \"enderecoLocalidade\": \"string\",\r\n  \"enderecoLogradouro\": \"string\",\r\n  \"enderecoUf\": \"string\",\r\n  \"id\": 0,\r\n  \"nome\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"razaoSocial\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"tipoEmpresa\": \"MATRIZ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02 - Cadastro de Empresa - Com erro CNPJ duplicado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cnpj\": \"25061391000185\",\r\n  \"contato\": \"1199997514\",\r\n  \"email\": \"desenvolvimento@giovannuslimpezaltda.com\",\r\n  \"enderecoBairro\": \"Jardim Guanabara\",\r\n  \"enderecoCep\": \"13502416\",\r\n  \"enderecoComplemento\": \"string\",\r\n  \"enderecoLocalidade\": \"string\",\r\n  \"enderecoLogradouro\": \"string\",\r\n  \"enderecoUf\": \"string\",\r\n  \"id\": 0,\r\n  \"nome\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"razaoSocial\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"tipoEmpresa\": \"MATRIZ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 - Teste de Cadastro com CNPJ inválido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cnpj\": \"2506139100010\",\r\n  \"contato\": \"1199997514\",\r\n  \"email\": \"desenvolvimento@giovannuslimpezaltda.com\",\r\n  \"enderecoBairro\": \"Jardim Guanabara\",\r\n  \"enderecoCep\": \"13502416\",\r\n  \"enderecoComplemento\": \"string\",\r\n  \"enderecoLocalidade\": \"string\",\r\n  \"enderecoLogradouro\": \"string\",\r\n  \"enderecoUf\": \"string\",\r\n  \"id\": 0,\r\n  \"nome\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"razaoSocial\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"tipoEmpresa\": \"MATRIZ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04 - Teste Cadastro  validaçao varios campos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cnpj\": \"2506139100010\",\r\n  \"contato\": \"1199997514\",\r\n  \"email\": \"desenvolvimentogiovannuslimpezaltda.com\",\r\n  \"enderecoBairro\": \"Jardim Guanabara Jardim GuanabaraJardim GuanabaraJardim GuanabaraJardim Guanabara \",\r\n  \"enderecoCep\": \"13502416\",\r\n  \"enderecoUf\": \"string\",\r\n  \"id\": 0,\r\n  \"nome\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"razaoSocial\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"tipoEmpresa\": \"MATRIZ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05 - Cadastro de FILIAL - com dados corretos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cnpj\": \"89572877000160\",\r\n  \"contato\": \"1199997514\",\r\n  \"email\": \"cobranca@julianaeiagofil.com.br\",\r\n  \"enderecoBairro\": \"Jardim Guanabara\",\r\n  \"enderecoCep\": \"71575470\",\r\n  \"enderecoComplemento\": \"211\",\r\n  \"enderecoLocalidade\": \"Paranoá\",\r\n  \"enderecoLogradouro\": \"Quadra Quadra 39 Conjunto N\",\r\n  \"enderecoUf\": \"DF\",\r\n  \"id\": 0,\r\n  \"matrizId\":1,\r\n  \"nome\": \"Juliana e Iago Filmagens Ltda\",\r\n  \"razaoSocial\": \"Juliana e Iago Filmagens Ltda\",\r\n  \"tipoEmpresa\": \"FILIAL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06 - Cadastro de FILIAL - sem informar uma MATRIZ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cnpj\": \"13864524000172\",\r\n  \"contato\": \"1199997514\",\r\n  \"email\": \"cobranca@julianaeiagofil.com.br\",\r\n  \"enderecoBairro\": \"Jardim Guanabara\",\r\n  \"enderecoCep\": \"72006765\",\r\n  \"enderecoComplemento\": \"211\",\r\n  \"enderecoLocalidade\": \"Setor Habitacional Vicente Pires\",\r\n  \"enderecoLogradouro\": \"Rua Rua 8 Chácara 186\",\r\n  \"enderecoUf\": \"DF\",\r\n  \"id\": 0,\r\n  \"nome\": \"Ricardo e Mirella Ferragens ME\",\r\n  \"razaoSocial\": \"Juliana e Iago Filmagens Ltda\",\r\n  \"tipoEmpresa\": \"FILIAL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "07 - Buscar uma empresa pelo ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "08 - Editar um cadastro",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cnpj\": \"25061391000185\",\r\n  \"contato\": \"1199997514\",\r\n  \"email\": \"desenvolvimento@giovannuslimpezaltda.com\",\r\n  \"enderecoBairro\": \"Jardim Guanabara\",\r\n  \"enderecoCep\": \"13502416\",\r\n  \"enderecoComplemento\": \"Complemento de Endereço\",\r\n  \"enderecoLocalidade\": \"Localidade\",\r\n  \"enderecoLogradouro\": \"Logradouro\",\r\n  \"enderecoUf\": \"UF\",\r\n  \"id\": 1,\r\n  \"nome\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"razaoSocial\": \"Isabella e Nicolas Eletrônica Ltda\",\r\n  \"tipoEmpresa\": \"MATRIZ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "09 - Busca de Empresa  - filtros (nome,cnpj,tipo)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/filtrar?cnpj=25061391000185&nomeEmpresa=Eletrônica&page=0&size=5&tipoEmpresa=MATRIZ",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"filtrar"
+					],
+					"query": [
+						{
+							"key": "cnpj",
+							"value": "25061391000185"
+						},
+						{
+							"key": "nomeEmpresa",
+							"value": "Eletrônica"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						},
+						{
+							"key": "tipoEmpresa",
+							"value": "MATRIZ"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10 - Excluir uma empresa pelo ID - erro id que nao existe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/1500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"1500"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11 - Excluir uma empresa pelo ID - erro nao pode excluir matriz",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "12 - Excluir uma empresa pelo ID - excluido com sucesso",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13 - Buscar CEP  - API Via Cep",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/buscarcep/13502416",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buscarcep",
+						"13502416"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "14 - Listagem de empresas do tipo MATRIZ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/matrizes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"matrizes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
