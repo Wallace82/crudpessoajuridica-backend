@@ -144,21 +144,16 @@ public class PessoaJuridicaController {
 	@ApiOperation(value ="EXCLUIR A EMPRESA")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?>  excluir(@PathVariable Long id) throws IOException {
-
 		try {
 			PessoaJuridica pessoaJuridica =  pessoaJuridicaService.buscarEntity(id);
 			pessoaJuridicaService.delete(pessoaJuridica);
-			
-			return ResponseEntity.ok("Excluido com sucesso");
-			
+			return ResponseEntity.ok().build(); 
 		} catch (PessoaJuridicaMatrizException msg) {
 			ResponseEntity.notFound().build();
 			return new ResponseEntity<>(msg.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 
-
 	}
-
 	
 
 	
