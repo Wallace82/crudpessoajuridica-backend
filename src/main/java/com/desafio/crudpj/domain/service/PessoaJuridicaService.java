@@ -81,7 +81,6 @@ public class PessoaJuridicaService {
 			PessoaJuridicaFilter pessoaJuridicaFilter,
 			int page,
 			int size) {
-		
 		PageRequest pageRequest = PageRequest.of(
 				page,
 				size,
