@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.desafio.crudpj.api.dto.PessoaJuridicaDTO;
 import com.desafio.crudpj.domain.filter.PessoaJuridicaFilter;
 import com.desafio.crudpj.domain.model.PessoaJuridica;
-import com.desafio.crudpj.domain.model.TipoEmpresaEnum;
 
 public interface PessoaJuridicaRepository  extends JpaRepository<PessoaJuridica, Long>{
 

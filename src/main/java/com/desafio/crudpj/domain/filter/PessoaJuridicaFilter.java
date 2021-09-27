@@ -2,7 +2,6 @@ package com.desafio.crudpj.domain.filter;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.PostLoad;
 
 import com.desafio.crudpj.domain.model.TipoEmpresaEnum;
 
