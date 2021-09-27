@@ -116,4 +116,3 @@ E agora?
 
     http://localhost:8080/swagger-ui.html
 
-    necessário token de validaçao para Endpoints protegidos
