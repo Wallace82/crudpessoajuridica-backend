@@ -78,18 +78,19 @@ public class PessoaJuridicaService {
 	 * @return Page com tamanho de cinco itens e dados de paginação
 	 */
 	public Page<PessoaJuridicaDTO> filtrar(
-			PessoaJuridicaFilter pessoaJuridicaFilterFilter,
+			PessoaJuridicaFilter pessoaJuridicaFilter,
 			int page,
 			int size) {
-
+		
 		PageRequest pageRequest = PageRequest.of(
 				page,
 				size,
 				Sort.Direction.ASC,
 				"nome");
-
+		pessoaJuridicaFilter.setCnpj(pessoaJuridicaFilter.getCnpj().trim().replaceAll("\\.|-|/", ""));
+		
 		return pessoaJuridicaRepository.filtrar(
-				pessoaJuridicaFilterFilter,
+				pessoaJuridicaFilter,
 				pageRequest);
 	}
 	

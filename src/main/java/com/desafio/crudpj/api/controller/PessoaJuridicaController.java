@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("cadastro")
+@CrossOrigin(maxAge = 1800, origins = {"http://localhost:4200"})
 public class PessoaJuridicaController {
 
 	@Autowired

@@ -28,4 +28,9 @@ public class PessoaJuridicaDTO {
 	private Long matrizId;
 	
 	
+	public String getCnpjFormatado(){
+		return  (this.cnpj!=null?this.cnpj.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})", "$1.$2.$3/$4-").trim():null); 
+	}
+	
+	
 }
