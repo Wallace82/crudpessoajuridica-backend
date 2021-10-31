@@ -86,7 +86,7 @@ public class PessoaJuridicaService {
 				size,
 				Sort.Direction.ASC,
 				"nome");
-		pessoaJuridicaFilter.setCnpj(pessoaJuridicaFilter.getCnpj().trim().replaceAll("\\.|-|/", ""));
+		pessoaJuridicaFilter.setCnpj(pessoaJuridicaFilter.getCnpj()==null?" ":pessoaJuridicaFilter.getCnpj().trim().replaceAll("\\.|-|/", ""));
 		
 		return pessoaJuridicaRepository.filtrar(
 				pessoaJuridicaFilter,
